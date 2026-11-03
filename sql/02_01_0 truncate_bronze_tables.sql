@@ -1,0 +1,9 @@
+TRUNCATE TABLE [bronze].[customers];
+TRUNCATE TABLE [bronze].[geolocation];
+TRUNCATE TABLE [bronze].[order_items];
+TRUNCATE TABLE [bronze].[order_payments];
+TRUNCATE TABLE [bronze].[order_reviews];
+TRUNCATE TABLE [bronze].[orders];
+TRUNCATE TABLE [bronze].[products];
+TRUNCATE TABLE [bronze].[sellers];
+TRUNCATE TABLE [bronze].[product_category_name_translation];
