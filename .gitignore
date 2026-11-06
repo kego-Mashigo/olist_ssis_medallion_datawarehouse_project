@@ -1,3 +1,6 @@
 
 # Original Olist CSV data
 /Olist_Rawdata/
+
+# Ignore original Olist CSV files
+/Olist_Rawdata/
