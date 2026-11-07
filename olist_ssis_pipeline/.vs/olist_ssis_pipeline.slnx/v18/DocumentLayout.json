@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\01_bronze_load.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
-      "RelativeMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|solutionrelative:01_bronze_load.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+      "AbsoluteMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\02_silver_transform.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|solutionrelative:02_silver_transform.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
     },
     {
       "AbsoluteMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\00_master.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
       "RelativeMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|solutionrelative:00_master.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\01_bronze_load.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{022D4A46-CAD6-C273-C97E-A3FADCFB38F6}|olist_ssis_pipeline.dtproj|solutionrelative:01_bronze_load.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,11 +22,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "02_silver_transform.dtsx [Design]",
+              "DocumentMoniker": "C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\02_silver_transform.dtsx",
+              "RelativeDocumentMoniker": "02_silver_transform.dtsx",
+              "ToolTip": "C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\02_silver_transform.dtsx [Design]",
+              "RelativeToolTip": "02_silver_transform.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMlSURBVDhPjZQ7bJtVGIaf41vsOk7ihICdxK1wiWiTFhW1QBEDapEQAnVoOzGUAalDNybECgsINqQOrBUDGzAgIUCVijoUqAQoTuM4JW4dO3Yuvvz2/9v//TC4/mM7ROGVPumc73zvq/d85yIAPvniq9/S8ydf4hComk5lZ/fHv\u002B7fu/nd11/\u002BMLyOlDLQG59Mz5CamRosGMLdP1ZZWlk9r1mIK\u002B99wM/f37rTUmqqVyCE8ANcePPS9RdfWJidS0xxJDxyYOSL21iOGx6NRie3qsrs9NOJWkdt1rSW0u5p\u002Bjz1/wm/348r5eT2bu1iPJG\u002BFhmdmO9fHxDUTYfthuGFptsY1l5O1V0e5ov8nckSG42GipvlKy1Ve65fw\u002BshQHajxbf3Kt78jTPTTI\u002BF\u002BObXEgAtxSCeSPPOsyksy\u002Ban23f62F0MOHQl6K6P9vgM2sQsVjjWzTnQHksg506wcPYsr7\u002B8SDAYRAjRT4dhQQCkizA0hK4hbPNJTiKMDgHLIBYOMTE\u002BNszyMCA4Hg2yOBflVNzmdNxiOuwSiwRYTI1yatJmcdwiHnLoOP2sQQz08HgyyvFktD8FwLULKSSgW6BaUKjUhks87N/yAdAtaFmgGNC2wR8MAYf08J\u002Byxq3bG14sPW7iuNCxu86ahqRhSFRTIBFw2KEomsVyUSNTD7JUD1Jp\u002B9EdaJmgGJKG0XWomRLp2CBlPx2GBQEQPuRIBBmOYooAqtlzBnUdqk2TmqKju0Fik0mS6dML8dSZixw5dm6foE9A2OcSaZSJ1Es4quqJNXRodCSlrSaPNhq0gzMsnH\u002BbS\u002B9//OG5q5//wtF3bzJ8yidSMW5MRTAsUG1whZ\u002Bm2d1m0wTNAsuFuaciXH0tyW5Dp7SlUSlU90z1Btn1Te7ef8DSgxwrqznW13KsraywtpxhM5ehsZ5BLy7jNre6RCnptC2q9Q4t7ckD6Dk0TZs/Mzl2qgffrx4CE0cZOfY8hbLKWkEh\u002B1ihUvV\u002Br65gPv9webepy0Kh2M/9Tzwz/2rSFImU1Drkyy0elVVKO3uC\u002By/SYUi89RGzlz8dTqPlfyf72Sv/AiuphR\u002BNLPK3AAAAAElFTkSuQmCC",
+              "WhenOpened": "2026-11-06T13:04:31.023Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -32,19 +48,19 @@
               "RelativeDocumentMoniker": "00_master.dtsx",
               "ToolTip": "C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\00_master.dtsx [Design]",
               "RelativeToolTip": "00_master.dtsx [Design]",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO8SURBVEhLtZVNaFxVFMd/891kdJzaNjFJW20pKS6yUgxai6taENJU2uLHypVQQVEIoYguFIqCiN3YheJOt2rowqLSIoiFSv2iFKUobdFCp5PMTF4meW/uPee4eDNvJtMmdNM/HObNefee/7nnf859cDdhZqnO8\u002Btvvjd3cHp6SlWJzfCiqIA3RUQQUUQVEePav9e5dOniu3NffPxRUK82Vke\u002BDV47dnxO2xBR9V7UOdFWSzRseV2JvC6HXpdWnAbLTj/89Gv98vSPwb4jr7yTzeVz/fE6SHceRDRxplKQTqfIZFJksyny2TSFXJoN\u002BTSDhQwDhQyqnm1jo8XJycm3n5h6eSaVzmSSAD1ICEy7BOvBDMwML8bpM\u002BdoNkPM7Pj4I0/P9K\u002Bll8DfAYEZqIEqPLt/D5lMnlyuwMO7dwPs619PL4GKJM6VSFha8Yk1Q48BzcgTLDsaTUe5fD8vPT/FzNEXOXzwQLK3H9nOg6phFtf/87PX\u002BGsxnyzanGoye3icT765wnU3kPi35kJeeGo72s3tFnRFVsXMkhe6cTgxDEQNbLXfAC\u002BGt7XL29NFQk8j9cEQMbr0bW9bbO/X3NijgSq9OqcXq4kZnRPYKn/nZOuVKNFARPFqFEhxaM8YYUtRM1QNrIQITD8\u002BRuTiSfZipFJFnBjrHKBXA0nKUC7mGCrn2VIqsKm0gfI9BbwopcEcGwfz3FfMUy7mGcxn8WLIOi3e06bxCUzh58s1vr1Q4btfK5z5rcJPf87jFbxXnCpeDCeGGIjE\u002BqyFVV3kPBjG7/80\u002BH6\u002BxJmFEmdrJX65XEM8eAFREAET8N7a/\u002B\u002BAQFXQdjZqQDafmAFOFNG49iJKZTGkshhyoxGyFArloW2lkR0TkyM7JiYpDI/fSiDx9RwLtjojszhz3xbXK/xw8QZRFOJcyOhIidnZtx498dmpc\u002B\u002Bf/OocWw990NnbJTCNa9qe6Ox/lxMD2uSGKniNU5h46F52DQ/wQDHDQFrxYcSVa/VOSOgfNC\u002BKFzjy5DbeOLCLV5/ZydH9O3lu73a8gPfgfFwiDJxT6kHEfBBxsx5SrYfcrK\u002BsQaBxcJG4S\u002BJe72betVhsAyLnqQUtFhoR9SCithj/3pZAxRCzuDOSDol9KvFlKGKoj7UCaDllvhFRC6KYKGjRaLre\u002BN1Jdt5x/sIfVKq19p0fT7Gatcnbvs50lx8kWGpRrYUstLNfCCKCPoLko795ZPteJTu26u062PTYsROjW4aHqvWQyAktpzgfW/Xq\u002BVP8fXK6f89dwf/5qMc\u002BgAHYjAAAAABJRU5ErkJggg==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMlSURBVDhPjZQ7bJtVGIaf41vsOk7ihICdxK1wiWiTFhW1QBEDapEQAnVoOzGUAalDNybECgsINqQOrBUDGzAgIUCVijoUqAQoTuM4JW4dO3Yuvvz2/9v//TC4/mM7ROGVPumc73zvq/d85yIAPvniq9/S8ydf4hComk5lZ/fHv\u002B7fu/nd11/\u002BMLyOlDLQG59Mz5CamRosGMLdP1ZZWlk9r1mIK\u002B99wM/f37rTUmqqVyCE8ANcePPS9RdfWJidS0xxJDxyYOSL21iOGx6NRie3qsrs9NOJWkdt1rSW0u5p\u002Bjz1/wm/348r5eT2bu1iPJG\u002BFhmdmO9fHxDUTYfthuGFptsY1l5O1V0e5ov8nckSG42GipvlKy1Ve65fw\u002BshQHajxbf3Kt78jTPTTI\u002BF\u002BObXEgAtxSCeSPPOsyksy\u002Ban23f62F0MOHQl6K6P9vgM2sQsVjjWzTnQHksg506wcPYsr7\u002B8SDAYRAjRT4dhQQCkizA0hK4hbPNJTiKMDgHLIBYOMTE\u002BNszyMCA4Hg2yOBflVNzmdNxiOuwSiwRYTI1yatJmcdwiHnLoOP2sQQz08HgyyvFktD8FwLULKSSgW6BaUKjUhks87N/yAdAtaFmgGNC2wR8MAYf08J\u002Byxq3bG14sPW7iuNCxu86ahqRhSFRTIBFw2KEomsVyUSNTD7JUD1Jp\u002B9EdaJmgGJKG0XWomRLp2CBlPx2GBQEQPuRIBBmOYooAqtlzBnUdqk2TmqKju0Fik0mS6dML8dSZixw5dm6foE9A2OcSaZSJ1Es4quqJNXRodCSlrSaPNhq0gzMsnH\u002BbS\u002B9//OG5q5//wtF3bzJ8yidSMW5MRTAsUG1whZ\u002Bm2d1m0wTNAsuFuaciXH0tyW5Dp7SlUSlU90z1Btn1Te7ef8DSgxwrqznW13KsraywtpxhM5ehsZ5BLy7jNre6RCnptC2q9Q4t7ckD6Dk0TZs/Mzl2qgffrx4CE0cZOfY8hbLKWkEh\u002B1ihUvV\u002Br65gPv9webepy0Kh2M/9Tzwz/2rSFImU1Drkyy0elVVKO3uC\u002By/SYUi89RGzlz8dTqPlfyf72Sv/AiuphR\u002BNLPK3AAAAAElFTkSuQmCC",
               "WhenOpened": "2026-11-02T23:36:14.855Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "01_bronze_load.dtsx [Design]",
               "DocumentMoniker": "C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\01_bronze_load.dtsx",
               "RelativeDocumentMoniker": "01_bronze_load.dtsx",
               "ToolTip": "C:\\Users\\KegoM\\OneDrive\\Desktop\\SSIS Files\\olist_ssis_pipeline\\01_bronze_load.dtsx [Design]",
               "RelativeToolTip": "01_bronze_load.dtsx [Design]",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO8SURBVEhLtZVNaFxVFMd/891kdJzaNjFJW20pKS6yUgxai6taENJU2uLHypVQQVEIoYguFIqCiN3YheJOt2rowqLSIoiFSv2iFKUobdFCp5PMTF4meW/uPee4eDNvJtMmdNM/HObNefee/7nnf859cDdhZqnO8\u002Btvvjd3cHp6SlWJzfCiqIA3RUQQUUQVEePav9e5dOniu3NffPxRUK82Vke\u002BDV47dnxO2xBR9V7UOdFWSzRseV2JvC6HXpdWnAbLTj/89Gv98vSPwb4jr7yTzeVz/fE6SHceRDRxplKQTqfIZFJksyny2TSFXJoN\u002BTSDhQwDhQyqnm1jo8XJycm3n5h6eSaVzmSSAD1ICEy7BOvBDMwML8bpM\u002BdoNkPM7Pj4I0/P9K\u002Bll8DfAYEZqIEqPLt/D5lMnlyuwMO7dwPs619PL4GKJM6VSFha8Yk1Q48BzcgTLDsaTUe5fD8vPT/FzNEXOXzwQLK3H9nOg6phFtf/87PX\u002BGsxnyzanGoye3icT765wnU3kPi35kJeeGo72s3tFnRFVsXMkhe6cTgxDEQNbLXfAC\u002BGt7XL29NFQk8j9cEQMbr0bW9bbO/X3NijgSq9OqcXq4kZnRPYKn/nZOuVKNFARPFqFEhxaM8YYUtRM1QNrIQITD8\u002BRuTiSfZipFJFnBjrHKBXA0nKUC7mGCrn2VIqsKm0gfI9BbwopcEcGwfz3FfMUy7mGcxn8WLIOi3e06bxCUzh58s1vr1Q4btfK5z5rcJPf87jFbxXnCpeDCeGGIjE\u002BqyFVV3kPBjG7/80\u002BH6\u002BxJmFEmdrJX65XEM8eAFREAET8N7a/\u002B\u002BAQFXQdjZqQDafmAFOFNG49iJKZTGkshhyoxGyFArloW2lkR0TkyM7JiYpDI/fSiDx9RwLtjojszhz3xbXK/xw8QZRFOJcyOhIidnZtx498dmpc\u002B\u002Bf/OocWw990NnbJTCNa9qe6Ox/lxMD2uSGKniNU5h46F52DQ/wQDHDQFrxYcSVa/VOSOgfNC\u002BKFzjy5DbeOLCLV5/ZydH9O3lu73a8gPfgfFwiDJxT6kHEfBBxsx5SrYfcrK\u002BsQaBxcJG4S\u002BJe72betVhsAyLnqQUtFhoR9SCithj/3pZAxRCzuDOSDol9KvFlKGKoj7UCaDllvhFRC6KYKGjRaLre\u002BN1Jdt5x/sIfVKq19p0fT7Gatcnbvs50lx8kWGpRrYUstLNfCCKCPoLko795ZPteJTu26u062PTYsROjW4aHqvWQyAktpzgfW/Xq\u002BVP8fXK6f89dwf/5qMc\u002BgAHYjAAAAABJRU5ErkJggg==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMlSURBVDhPjZQ7bJtVGIaf41vsOk7ihICdxK1wiWiTFhW1QBEDapEQAnVoOzGUAalDNybECgsINqQOrBUDGzAgIUCVijoUqAQoTuM4JW4dO3Yuvvz2/9v//TC4/mM7ROGVPumc73zvq/d85yIAPvniq9/S8ydf4hComk5lZ/fHv\u002B7fu/nd11/\u002BMLyOlDLQG59Mz5CamRosGMLdP1ZZWlk9r1mIK\u002B99wM/f37rTUmqqVyCE8ANcePPS9RdfWJidS0xxJDxyYOSL21iOGx6NRie3qsrs9NOJWkdt1rSW0u5p\u002Bjz1/wm/348r5eT2bu1iPJG\u002BFhmdmO9fHxDUTYfthuGFptsY1l5O1V0e5ov8nckSG42GipvlKy1Ve65fw\u002BshQHajxbf3Kt78jTPTTI\u002BF\u002BObXEgAtxSCeSPPOsyksy\u002Ban23f62F0MOHQl6K6P9vgM2sQsVjjWzTnQHksg506wcPYsr7\u002B8SDAYRAjRT4dhQQCkizA0hK4hbPNJTiKMDgHLIBYOMTE\u002BNszyMCA4Hg2yOBflVNzmdNxiOuwSiwRYTI1yatJmcdwiHnLoOP2sQQz08HgyyvFktD8FwLULKSSgW6BaUKjUhks87N/yAdAtaFmgGNC2wR8MAYf08J\u002Byxq3bG14sPW7iuNCxu86ahqRhSFRTIBFw2KEomsVyUSNTD7JUD1Jp\u002B9EdaJmgGJKG0XWomRLp2CBlPx2GBQEQPuRIBBmOYooAqtlzBnUdqk2TmqKju0Fik0mS6dML8dSZixw5dm6foE9A2OcSaZSJ1Es4quqJNXRodCSlrSaPNhq0gzMsnH\u002BbS\u002B9//OG5q5//wtF3bzJ8yidSMW5MRTAsUG1whZ\u002Bm2d1m0wTNAsuFuaciXH0tyW5Dp7SlUSlU90z1Btn1Te7ef8DSgxwrqznW13KsraywtpxhM5ehsZ5BLy7jNre6RCnptC2q9Q4t7ckD6Dk0TZs/Mzl2qgffrx4CE0cZOfY8hbLKWkEh\u002B1ihUvV\u002Br65gPv9webepy0Kh2M/9Tzwz/2rSFImU1Drkyy0elVVKO3uC\u002By/SYUi89RGzlz8dTqPlfyf72Sv/AiuphR\u002BNLPK3AAAAAElFTkSuQmCC",
               "WhenOpened": "2026-10-29T19:03:46.328Z",
               "EditorCaption": " [Design]"
             }

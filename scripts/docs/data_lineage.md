@@ -48,3 +48,16 @@ record counts, excluding headers.
 The orders table initially contained 298323 rows against 99441
 source records. After truncating the table and reloading once,
 the Bronze count matched the source count of 99441.
+
+## Review comments containing line breaks
+
+Review comments may contain embedded line breaks inside quoted CSV
+fields. Physical line counts therefore do not represent record counts.
+
+Source records were counted using Python csv.reader with newline=""
+and UTF-8 decoding, excluding the header record.
+
+- CSV review records: 99224
+- Bronze review rows: 99224
+- Difference: 0
+- Result: PASS

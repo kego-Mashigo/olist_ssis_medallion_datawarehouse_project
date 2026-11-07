@@ -1,0 +1,1166 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/27/2026 10:48:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-VEKK9KL"
+  DTS:CreatorName="DESKTOP-VEKK9KL\KegoM"
+  DTS:DTSID="{5E3DB07D-6A01-4379-9ED0-8D5BFDF52DDD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="7177"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{A5F36C7D-68D6-40EE-8C4C-904820CA849D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\createdb_olist_stg"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B602AF76-91AF-4DAA-A836-2CE76BD804C8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createdb_olist_stg"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE MASTER&#xA;&#xA;-- Create the staging database if it does not exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.databases&#xA;    WHERE name = N'olist_stg'&#xA;)&#xA;BEGIN&#xA;    CREATE DATABASE [olist_stg];&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_customers"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{48363ACE-666F-4123-9F05-84106D196B45}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_customers"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the customers table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_customers'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_customers]&#xA;    (&#xA;        [customer_id]              VARCHAR(50),&#xA;        [customer_unique_id]       VARCHAR(50),&#xA;        [customer_zip_code_prefix] VARCHAR(5),&#xA;        [customer_city]            VARCHAR(50),&#xA;        [customer_state]           VARCHAR(50)&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_geolocation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2BD6963B-2419-4D77-AFA4-36EBE05FB310}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_geolocation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the rawdata_geolocation table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_geolocation'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_geolocation]&#xA;    (&#xA;        [geolocation_zip_code-prefix]              INT,&#xA;        [geolocation_lat]       BIGINT,&#xA;        [geolocation_lng] BIGINT,&#xA;        [geolocation_city]            VARCHAR(50),&#xA;        [geolocation_state]           VARCHAR(50)&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_orders"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{79A134F0-FD78-4843-9F48-4E29A7FC231A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_orders"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the orders table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_orders'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_orders]&#xA;    (&#xA;        [order_id]             VARCHAR(50),&#xA;        [customer_id]       VARCHAR(50),&#xA;        [order_status] VARCHAR(50),&#xA;        [order_purchase_timestamp]  DATETIME,&#xA;        [order_approved_at]  DATETIME,&#xA;        [order_delivered_carrier_date]  DATETIME,&#xA;        [order_delivered_customer_date]  DATETIME,&#xA;        [order_estimated_delivery_date]  DATETIME&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_order_items"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A1B9CC39-4AA5-49F3-BC29-E48FE9697C01}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_order_items"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the order_items table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_order_items'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_order_items]&#xA;    (&#xA;        [order_id]             VARCHAR(50),&#xA;        [order_item_id]       INT,&#xA;        [product_id] VARCHAR(50),&#xA;        [seller_id]            VARCHAR(50),&#xA;        [shipping_lomit_date]          DATE,&#xA;        [price]   FLOAT ,&#xA;        [freight] FLOAT&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_order_payment"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1CE86BF4-78AE-4346-95A0-AF62173A3517}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_order_payment"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the order_payment table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_order_payment'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_order_payment]&#xA;    (&#xA;        [order_id]             VARCHAR(50),&#xA;        [payment_sequential]       INT,&#xA;        [payment_type] VARCHAR(50),&#xA;        [payment_installments]   FLOAT&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_order_reviews"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1ED3D026-CFB8-4F87-9B91-36313C73D634}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_order_reviews"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the order_reviews table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_order_reviews'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_order_reviews]&#xA;    (&#xA;        [review_id]             VARCHAR(50),&#xA;        [order_id]       VARCHAR(50),&#xA;        [review_score] INT,&#xA;        [review_comment_title]  VARCHAR(100),&#xA;        [review_comment_message]  VARCHAR(100),&#xA;        [review_creation_date]  DATE,&#xA;        [review_answer_timestamp]  DATETIME&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_products"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1984A179-D166-41E0-AE1D-B2578D68EE21}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_products"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the products table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_products'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_products]&#xA;    (&#xA;        [product_id]             VARCHAR(50),&#xA;        [product_category_name]       VARCHAR(50),&#xA;        [product_name_lenght] INT,&#xA;        [product_description_lenght] INT,&#xA;        [product_photos_qty] INT,&#xA;        [product_weight_g] INT,&#xA;        [product_lenght_cm] INT,&#xA;        [product_height_cm] INT,&#xA;        [product_width_cm] INT,&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_product_category_name_translation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1F1A9403-F875-4B43-BE67-0B7E84C509A8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_product_category_name_translation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the product_category_name_translation table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_product_category_name_translation'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_product_category_name_translation]&#xA;    (&#xA;        [product_category_name]             VARCHAR(50),&#xA;        [product_category_name_english]             VARCHAR(50),&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\createtb_rawdata_sellers"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1742E709-26F1-4BB9-8740-1AFEFC71AD09}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="createtb_rawdata_sellers"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="USE [olist_stg];&#xA;GO&#xA;&#xA;-- Create the sellers table only if it does not already exist.&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = N'rawdata_sellers'&#xA;      AND schema_id = SCHEMA_ID(N'bronze')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [bronze].[rawdata_sellers]&#xA;    (&#xA;        [seller_id]             VARCHAR(50),&#xA;        [seller_zip_code_prefix]       INT,&#xA;        [seller_city] VARCHAR(50),&#xA;        [seller_state] VARCHAR(50),&#xA;    );&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\create_schema_bronze"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1A034583-BAC9-4265-8E0D-69D1251128C1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="create_schema_bronze"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}"
+          SQLTask:SqlStatementSource="-- Create the bronze schema in the staging database.&#xA;USE [olist_stg];&#xA;GO&#xA;&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.schemas&#xA;    WHERE name = N'bronze'&#xA;)&#xA;BEGIN&#xA;    EXEC(N'CREATE SCHEMA [bronze]');&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load rawdata_customers csv"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2be4327d-f172-43e2-bb82-d945b14f8949}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load rawdata_customers csv"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load rawdata_customers csv\flat file source_customers"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="7177"
+              name="flat file source_customers"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load rawdata_customers csv\flat file source_customers.Connections[FlatFileConnection]"
+                  connectionManagerID="{9C17CD0C-D37E-4055-A2FD-82F87C405252}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[From customers csv]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      length="50"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_unique_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_unique_id]"
+                      length="50"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_unique_id]"
+                      name="customer_unique_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_zip_code_prefix]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_zip_code_prefix]"
+                      length="5"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_zip_code_prefix]"
+                      name="customer_zip_code_prefix"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_city]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_city]"
+                      length="50"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_city]"
+                      name="customer_city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_state]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_state]"
+                      length="50"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_state]"
+                      name="customer_state"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_unique_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_unique_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_zip_code_prefix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="customer_zip_code_prefix" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_city" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].ExternalColumns[customer_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_state" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load rawdata_customers csv\olist_stg"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="olist_stg"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[bronze].[rawdata_customers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load rawdata_customers csv\olist_stg.Connections[OleDbConnection]"
+                  connectionManagerID="{B427C422-F160-4E2F-9B15-CB982FF9E0B1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-VEKK9KL.olist_stg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].Columns[customer_unique_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_unique_id"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_unique_id]"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_unique_id]" />
+                    <inputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].Columns[customer_zip_code_prefix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="customer_zip_code_prefix"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_zip_code_prefix]"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_zip_code_prefix]" />
+                    <inputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].Columns[customer_city]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_city"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_city]" />
+                    <inputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].Columns[customer_state]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_state"
+                      externalMetadataColumnId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
+                      lineageId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output].Columns[customer_state]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_unique_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_unique_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_zip_code_prefix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="customer_zip_code_prefix" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_city" />
+                    <externalMetadataColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_state" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load rawdata_customers csv\olist_stg.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load rawdata_customers csv\olist_stg.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load rawdata_customers csv\olist_stg.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load rawdata_customers csv\olist_stg.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load rawdata_customers csv.Paths[Flat File Source Output]"
+              endId="Package\Load rawdata_customers csv\olist_stg.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load rawdata_customers csv\flat file source_customers.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6D93403D-D75B-466D-8F81-DD6C81579A56}"
+      DTS:From="Package\createdb_olist_stg"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\create_schema_bronze" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C079D0BB-D879-4ED1-A317-CE9AECEC9DBD}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\createtb_rawdata_customers" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{D971D034-F870-4972-B448-56EFBA724F10}"
+      DTS:From="Package\createtb_rawdata_customers"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Load rawdata_customers csv" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{31632944-000C-42B0-8EB1-89B5B819606C}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\createtb_rawdata_geolocation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{C6E9AB9A-D947-4673-AA7F-8900B005D8B1}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\createtb_rawdata_order_items" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{8FA37B39-ECF8-4879-B563-F252137EDE57}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\createtb_rawdata_order_payment" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{084EE05E-6C05-4FB1-A424-C1443E1CEAA1}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\createtb_rawdata_order_reviews" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{F1715052-3B9E-479B-A516-6F95E08CF9AD}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\createtb_rawdata_orders" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{E2394772-4A20-4A7C-BFCE-17A67387C78D}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\createtb_rawdata_products" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{39BC85DD-8D66-4A3C-A550-0D2E2DF380F0}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\createtb_rawdata_sellers" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{E94A94F4-8C49-4894-A87E-337AB8892130}"
+      DTS:From="Package\create_schema_bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\createtb_rawdata_product_category_name_translation" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="190.666666666667,42.6666666666667"
+          Id="Package\create_schema_bronze"
+          TopLeft="440.535694592234,88.2631569256252" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\createdb_olist_stg"
+          TopLeft="453.303551164323,14.5639096145272" />
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\createtb_rawdata_customers"
+          TopLeft="32.3214271265482,179.654133365779" />
+        <NodeLayout
+          Size="222.666666666667,42.6666666666667"
+          Id="Package\createtb_rawdata_geolocation"
+          TopLeft="285.89284436245,178.551376741851" />
+        <NodeLayout
+          Size="224,42.6666666666667"
+          Id="Package\createtb_rawdata_order_items"
+          TopLeft="532.321404774807,179.551376599114" />
+        <NodeLayout
+          Size="240,42.6666666666667"
+          Id="Package\createtb_rawdata_order_payment"
+          TopLeft="785.803536300416,181.220550040148" />
+        <NodeLayout
+          Size="234.666666666667,42.6666666666667"
+          Id="Package\createtb_rawdata_order_reviews"
+          TopLeft="1046.0713818084,184.598996910979" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\createtb_rawdata_orders"
+          TopLeft="1313.18447574929,184.097744359829" />
+        <NodeLayout
+          Size="338.666666666667,42.6666666666667"
+          Id="Package\createtb_rawdata_product_category_name_translation"
+          TopLeft="2013.14479090525,192.042604554098" />
+        <NodeLayout
+          Size="209.333333333334,42.6666666666667"
+          Id="Package\createtb_rawdata_products"
+          TopLeft="1544.40471760042,186.766916026841" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\createtb_rawdata_sellers"
+          TopLeft="1786.54755223188,187.130324188617" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="536.252956211612,57.2305762811938">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.0325806444314"
+              Start="0,0"
+              End="0,23.5325806444314">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5325806444314" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="490.202361258901,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-349.214267465686,48.7243097734873"
+              Start="0,0"
+              End="-349.214267465686,41.2243097734873">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.6894762212635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.6894762212635"
+                    Point2="0,16.6894762212635"
+                    Point3="-4,16.6894762212635" />
+                  <mssgle:LineSegment
+                    End="-345.214267465686,16.6894762212635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-345.214267465686,16.6894762212635"
+                    Point2="-349.214267465686,16.6894762212635"
+                    Point3="-349.214267465686,20.6894762212635" />
+                  <mssgle:LineSegment
+                    End="-349.214267465686,41.2243097734873" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="218.666666666667,42.6666666666667"
+          Id="Package\Load rawdata_customers csv"
+          TopLeft="32.0476853684277,264.037591481155" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="535.869027925567,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-138.642850229784,47.6215531495595"
+              Start="0,0"
+              End="-138.642850229784,40.1215531495595">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.8107765747798" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.8107765747798"
+                    Point2="0,23.8107765747798"
+                    Point3="-4,23.8107765747798" />
+                  <mssgle:LineSegment
+                    End="-134.642850229784,23.8107765747798" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.642850229784,23.8107765747798"
+                    Point2="-138.642850229784,23.8107765747798"
+                    Point3="-138.642850229784,27.8107765747798" />
+                  <mssgle:LineSegment
+                    End="-138.642850229784,40.1215531495595" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="141.184556247488,222.320800032446">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.7167914487089"
+              Start="0,0"
+              End="0,34.2167914487089">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.2167914487089" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="581.535694592234,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.7857101825734,48.6215530068221"
+              Start="0,0"
+              End="62.7857101825734,41.1215530068221">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.6542790759" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.6542790759"
+                    Point2="0,16.6542790759"
+                    Point3="4,16.6542790759" />
+                  <mssgle:LineSegment
+                    End="58.7857101825734,16.6542790759" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.7857101825734,16.6542790759"
+                    Point2="62.7857101825734,16.6542790759"
+                    Point3="62.7857101825734,20.6542790759" />
+                  <mssgle:LineSegment
+                    End="62.7857101825734,41.1215530068221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="590.669027925567,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="315.134508374848,50.2907264478565"
+              Start="0,0"
+              End="315.134508374848,42.7907264478565">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.0033178019121" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.0033178019121"
+                    Point2="0,15.0033178019121"
+                    Point3="4,15.0033178019121" />
+                  <mssgle:LineSegment
+                    End="311.134508374848,15.0033178019121" />
+                  <mssgle:CubicBezierSegment
+                    Point1="311.134508374848,15.0033178019121"
+                    Point2="315.134508374848,15.0033178019121"
+                    Point3="315.134508374848,19.0033178019121" />
+                  <mssgle:LineSegment
+                    End="315.134508374848,42.7907264478565" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="596.757916814456,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="566.646798327273,53.6691733186876"
+              Start="0,0"
+              End="566.646798327273,46.1691733186876">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.2443867541037" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.2443867541037"
+                    Point2="0,14.2443867541037"
+                    Point3="4,14.2443867541037" />
+                  <mssgle:LineSegment
+                    End="562.646798327273,14.2443867541037" />
+                  <mssgle:CubicBezierSegment
+                    Point1="562.646798327273,14.2443867541037"
+                    Point2="566.646798327273,14.2443867541037"
+                    Point3="566.646798327273,18.2443867541037" />
+                  <mssgle:LineSegment
+                    End="566.646798327273,46.1691733186876" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="601.107123163662,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="811.410685918965,53.1679207675375"
+              Start="0,0"
+              End="811.410685918965,45.6679207675375">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.7570713458936" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.7570713458936"
+                    Point2="0,12.7570713458936"
+                    Point3="4,12.7570713458936" />
+                  <mssgle:LineSegment
+                    End="807.410685918965,12.7570713458936" />
+                  <mssgle:CubicBezierSegment
+                    Point1="807.410685918965,12.7570713458936"
+                    Point2="811.410685918965,12.7570713458936"
+                    Point3="811.410685918965,16.7570713458936" />
+                  <mssgle:LineSegment
+                    End="811.410685918965,45.6679207675375" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="604.369027925567,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1044.70235634152,55.8370924345493"
+              Start="0,0"
+              End="1044.70235634152,48.3370924345493">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.26435454565134" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.26435454565134"
+                    Point2="0,12.2643545456513"
+                    Point3="4,12.2643545456513" />
+                  <mssgle:LineSegment
+                    End="1040.70235634152,12.2643545456513" />
+                  <mssgle:CubicBezierSegment
+                    Point1="1040.70235634152,12.2643545456513"
+                    Point2="1044.70235634152,12.2643545456513"
+                    Point3="1044.70235634152,16.2643545456513" />
+                  <mssgle:LineSegment
+                    End="1044.70235634152,48.3370924345493" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="606.906064962604,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1278.97482060261,56.2005005963254"
+              Start="0,0"
+              End="1278.97482060261,48.7005005963254">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.41409547714844" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.41409547714844"
+                    Point2="0,11.4140954771484"
+                    Point3="4,11.4140954771484" />
+                  <mssgle:LineSegment
+                    End="1274.97482060261,11.4140954771484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="1274.97482060261,11.4140954771484"
+                    Point2="1278.97482060261,11.4140954771484"
+                    Point3="1278.97482060261,15.4140954771484" />
+                  <mssgle:LineSegment
+                    End="1278.97482060261,48.7005005963254" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="608.935694592234,130.929823592292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1573.54242964635,61.1127809618064"
+              Start="0,0"
+              End="1573.54242964635,53.6127809618064">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.57124083970708" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.57124083970708"
+                    Point2="0,11.5712408397071"
+                    Point3="4,11.5712408397071" />
+                  <mssgle:LineSegment
+                    End="1569.54242964635,11.5712408397071" />
+                  <mssgle:CubicBezierSegment
+                    Point1="1569.54242964635,11.5712408397071"
+                    Point2="1573.54242964635,11.5712408397071"
+                    Point3="1573.54242964635,15.5712408397071" />
+                  <mssgle:LineSegment
+                    End="1573.54242964635,53.6127809618064" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load rawdata_customers csv">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\Load rawdata_customers csv\flat file source_customers"
+          TopLeft="17.4999992176891,13.6842103760659" />
+        <NodeLayout
+          Size="118.666666666667,42.6666666666667"
+          Id="Package\Load rawdata_customers csv\olist_stg"
+          TopLeft="61.9999981522561,130.999996095896" />
+        <EdgeLayout
+          Id="Package\Load rawdata_customers csv.Paths[Flat File Source Output]"
+          TopLeft="119.583332018306,56.3508770427326">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74.6491190531633"
+              Start="0,0"
+              End="0,67.1491190531633">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.1491190531633" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load rawdata_customers csv\olist_stg">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

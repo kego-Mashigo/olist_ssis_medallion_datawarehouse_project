@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="olist_ssis_pipeline"
   DTS:PackageType="5"
-  DTS:VersionBuild="239"
-  DTS:VersionGUID="{E3CF3183-503E-4F5C-A4E6-930D30C3DAA7}">
+  DTS:VersionBuild="242"
+  DTS:VersionGUID="{C83E4FF9-FED1-4938-A5CA-CE3514C64C26}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -45,13 +45,13 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\01_create_schema"
+      DTS:refId="Package\01_create_bronze_schema"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{1A034583-BAC9-4265-8E0D-69D1251128C1}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="01_create_schema"
+      DTS:ObjectName="01_create_bronze_schema"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -628,7 +628,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_01_createtb_bronze_customers"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1803,7 +1803,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_03_createtb_bronze_order_items"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2361,7 +2361,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_04_createtb_bronze_order_payments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2993,7 +2993,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_05_createtb_bronze_order_reviews"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -4375,7 +4375,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_07_createtb_bronze_products"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5339,7 +5339,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_09_createtb_bronze_product_category_name_translation"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5373,7 +5373,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02__02_createtb_bronze_geolocation"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5543,7 +5543,7 @@
       DTS:From="Package\00_createdb_olist_dwh"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\01_create_schema" />
+      DTS:To="Package\01_create_bronze_schema" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
@@ -5708,7 +5708,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint 28]"
       DTS:CreationName=""
       DTS:DTSID="{9AED0488-3056-4673-AFD8-C275A97CCEBB}"
-      DTS:From="Package\01_create_schema"
+      DTS:From="Package\01_create_bronze_schema"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 28"
       DTS:To="Package\02_10_createtb_etl_load_log" />
@@ -5854,111 +5854,143 @@
       <GraphLayout
         Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="189.333333333334,42.6666666666667"
+          Size="189,43"
           Id="Package\00_createdb_olist_dwh"
           TopLeft="1072.23209492463,12.2832078851829" />
         <NodeLayout
-          Size="268,42.6666666666667"
-          Id="Package\02_07_7_load_bronze_products csv file"
-          TopLeft="1833.87497994863,564.228065700495" />
+          Size="212,42"
+          Id="Package\01_create_bronze_schema"
+          TopLeft="1061.21423729084,95.5087709031172" />
         <NodeLayout
-          Size="170.666666666667,42.6666666666667"
-          Id="Package\01_create_schema"
-          TopLeft="1083.21423729084,93.5087709031172" />
-        <NodeLayout
-          Size="258.666666666667,42.6666666666667"
+          Size="259,43"
           Id="Package\02__02_createtb_bronze_geolocation"
           TopLeft="298.898796161991,291.674182517329" />
         <NodeLayout
-          Size="238.666666666667,42.6666666666667"
+          Size="239,43"
           Id="Package\02_01_0_truncate_bronze_tables"
           TopLeft="1036.87495364808,432.912276028982" />
         <NodeLayout
-          Size="278.666666666667,42.6666666666667"
+          Size="279,43"
           Id="Package\02_01_1_load_ bronze_customers csv file"
           TopLeft="2.04768670953223,575.418540443206" />
         <NodeLayout
-          Size="246.666666666667,42"
+          Size="247,42"
           Id="Package\02_01_createtb_bronze_customers"
           TopLeft="18.0059515760235,294.616538125872" />
         <NodeLayout
-          Size="281.333333333334,42.6666666666667"
+          Size="281,43"
           Id="Package\02_02_2_load_bronze_geolocation csv file"
           TopLeft="320.148795212043,574.746861641585" />
         <NodeLayout
-          Size="284,42.6666666666667"
+          Size="284,43"
           Id="Package\02_03_3_load_bronze_order_items csv file"
           TopLeft="632.827352747943,572.421047339919" />
         <NodeLayout
-          Size="254.666666666667,42.6666666666667"
+          Size="255,43"
           Id="Package\02_03_createtb_bronze_order_items"
           TopLeft="596.220211442118,290.328317738695" />
         <NodeLayout
-          Size="304,42.6666666666667"
+          Size="304,43"
           Id="Package\02_04_4_load_bronze_order_payments csv file"
           TopLeft="937.916652454684,572.666661623277" />
         <NodeLayout
-          Size="274.666666666667,42.6666666666667"
+          Size="275,43"
           Id="Package\02_04_createtb_bronze_order_payments"
           TopLeft="876.57734176632,289.065160384859" />
         <NodeLayout
-          Size="294.666666666667,42.6666666666667"
+          Size="295,43"
           Id="Package\02_05_5_load_bronze_order_reviews csv file"
           TopLeft="1254.49998051674,567.421047645785" />
         <NodeLayout
-          Size="265.333333333334,42.6666666666667"
+          Size="265,43"
           Id="Package\02_05_createtb_bronze_order_reviews"
           TopLeft="1176.3987569347,295.375938050559" />
         <NodeLayout
-          Size="257.333333333334,42.6666666666667"
+          Size="257,43"
           Id="Package\02_06_6_load_bronze_orders csv file"
           TopLeft="1571.24997640029,568.631573348054" />
         <NodeLayout
-          Size="228,42.6666666666667"
+          Size="228,43"
           Id="Package\02_06_createtb_bronze_orders"
           TopLeft="1457.88685023298,298.180449881461" />
         <NodeLayout
-          Size="238.666666666667,42.6666666666667"
+          Size="268,43"
+          Id="Package\02_07_7_load_bronze_products csv file"
+          TopLeft="1833.87497994863,564.228065700495" />
+        <NodeLayout
+          Size="239,43"
           Id="Package\02_07_createtb_bronze_products"
           TopLeft="1707.32137698414,295.882203049328" />
         <NodeLayout
-          Size="258.666666666667,42.6666666666667"
+          Size="259,43"
           Id="Package\02_08_8_load_bronze_sellers csv file"
           TopLeft="2109.2499699928,566.035082946359" />
         <NodeLayout
-          Size="229.333333333334,42.6666666666667"
+          Size="229,43"
           Id="Package\02_08_createtb_bronze_sellers"
           TopLeft="1975.35706760096,300.937340482898" />
         <NodeLayout
-          Size="358.666666666667,42.6666666666667"
+          Size="359,43"
           Id="Package\02_09_9_load_product_category_name_translation csv file"
           TopLeft="2389.59720317668,565.736837650352" />
         <NodeLayout
-          Size="368,42.6666666666667"
+          Size="377,42"
           Id="Package\02_09_createtb_bronze_product_category_name_translation"
           TopLeft="2221.0019260883,296.937340251799" />
         <NodeLayout
-          Size="217.333333333334,42.6666666666667"
+          Size="217,43"
           Id="Package\02_10_createtb_etl_load_log"
           TopLeft="1054.24999614432,186.105261114496" />
         <NodeLayout
-          Size="174.666666666667,42.6666666666667"
+          Size="175,43"
           Id="Package\log_customers_load"
           TopLeft="46.2499979324639,682.842097765687" />
+        <NodeLayout
+          Size="181,43"
+          Id="Package\log_geolocation_load"
+          TopLeft="373.124983320013,682.929821308493" />
+        <NodeLayout
+          Size="183,43"
+          Id="Package\log_order_items_load"
+          TopLeft="676.666654596727,669.631576250382" />
+        <NodeLayout
+          Size="203,43"
+          Id="Package\log_order_payments_load"
+          TopLeft="991.624992595986,672.368418325595" />
+        <NodeLayout
+          Size="193,43"
+          Id="Package\log_order_reviews_load"
+          TopLeft="1305.74998955056,669.631576250382" />
+        <NodeLayout
+          Size="156,43"
+          Id="Package\log_orders_load"
+          TopLeft="1628.20832006199,665.526313137563" />
+        <NodeLayout
+          Size="296,43"
+          Id="Package\log_product_category_name_translation_load"
+          TopLeft="2423.45832134721,664.842102618759" />
+        <NodeLayout
+          Size="167,43"
+          Id="Package\log_products_load"
+          TopLeft="1887.04165350708,659.92982202218" />
+        <NodeLayout
+          Size="157,43"
+          Id="Package\log_sellers_load"
+          TopLeft="2155.24999860302,667.578944693972" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="1167.72316610773,54.9498745518496">
+          TopLeft="1166.97316610773,55.2832078851829">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.5588963512676"
+              EndConnector="0,40.2255630179343"
               Start="0,0"
-              End="0,31.0588963512676">
+              End="0,32.7255630179343">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.0588963512676" />
+                    End="0,32.7255630179343" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6275,30 +6307,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 18]"
-          TopLeft="2405.0019260883,339.604006918466">
+          TopLeft="2409.5019260883,338.937340251799">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-1156.52697244022,93.3082691105159"
+              EndConnector="-1160.72697244022,93.974935777183"
               Start="0,0"
-              End="-1156.52697244022,85.8082691105159">
+              End="-1160.72697244022,86.474935777183">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,72.0572867521965" />
+                    End="0,72.6030342794909" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,72.0572867521965"
-                    Point2="0,76.0572867521965"
-                    Point3="-4,76.0572867521965" />
+                    Point1="0,72.6030342794909"
+                    Point2="0,76.6030342794909"
+                    Point3="-4,76.6030342794909" />
                   <mssgle:LineSegment
-                    End="-1152.52697244022,76.0572867521965" />
+                    End="-1156.72697244022,76.6030342794909" />
                   <mssgle:CubicBezierSegment
-                    Point1="-1152.52697244022,76.0572867521965"
-                    Point2="-1156.52697244022,76.0572867521965"
-                    Point3="-1156.52697244022,80.0572867521965" />
+                    Point1="-1156.72697244022,76.6030342794909"
+                    Point2="-1160.72697244022,76.6030342794909"
+                    Point3="-1160.72697244022,80.6030342794909" />
                   <mssgle:LineSegment
-                    End="-1156.52697244022,85.8082691105159" />
+                    End="-1160.72697244022,86.474935777183" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6649,18 +6681,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 28]"
-          TopLeft="1165.73211671758,136.175437569784">
+          TopLeft="1164.98211671758,137.508770903117">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49.9298235447118"
+              EndConnector="0,48.5964902113788"
               Start="0,0"
-              End="0,42.4298235447118">
+              End="0,41.0964902113788">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.4298235447118" />
+                    End="0,41.0964902113788" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6717,6 +6749,182 @@
                     Point3="-460.296451368873,31.4976949029576" />
                   <mssgle:LineSegment
                     End="-460.296451368873,54.0563899575327" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 30]"
+          TopLeft="462.303555932695,617.413528308252">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.516293000241"
+              Start="0,0"
+              End="0,58.016293000241">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.016293000241" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 31]"
+          TopLeft="771.413670339001,615.087714006586">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5438622437965"
+              Start="0,0"
+              End="0,47.0438622437965">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.0438622437965" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 32]"
+          TopLeft="1091.437489192,615.333328289944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.0350900356517"
+              Start="0,0"
+              End="0,49.5350900356517">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5350900356517" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 33]"
+          TopLeft="1402.12498503365,610.087714312452">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.5438619379306"
+              Start="0,0"
+              End="0,52.0438619379306">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.0438619379306" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 34]"
+          TopLeft="1703.06248156447,611.298240014721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.2280731228419"
+              Start="0,0"
+              End="0,46.7280731228419">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.7280731228419" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 35]"
+          TopLeft="1969.12498339452,606.894732367162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.0350896550182"
+              Start="0,0"
+              End="0,45.5350896550182">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5350896550182" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 36]"
+          TopLeft="2236.24998429791,608.701749613025">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.8771950809469"
+              Start="0,0"
+              End="0,51.3771950809469">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.3771950809469" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 37]"
+          TopLeft="2570.19442892861,608.403504317019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.4385983017406"
+              Start="0,0"
+              End="0,48.9385983017406">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9385983017406" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6897,238 +7105,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="1246.64999614432,228.771927781162">
+          TopLeft="1246.34999614432,229.105261114496">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="1158.35192994397,68.1654124706371"
+              EndConnector="1163.15192994398,67.832079137303"
               Start="0,0"
-              End="1158.35192994397,60.6654124706371">
+              End="1163.15192994398,60.332079137303">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.72148915370172" />
+                    End="0,8.66131012382947" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,8.72148915370172"
-                    Point2="0,12.7214891537017"
-                    Point3="4,12.7214891537017" />
+                    Point1="0,8.66131012382947"
+                    Point2="0,12.6613101238295"
+                    Point3="4,12.6613101238295" />
                   <mssgle:LineSegment
-                    End="1154.35192994397,12.7214891537017" />
+                    End="1159.15192994398,12.6613101238295" />
                   <mssgle:CubicBezierSegment
-                    Point1="1154.35192994397,12.7214891537017"
-                    Point2="1158.35192994397,12.7214891537017"
-                    Point3="1158.35192994397,16.7214891537017" />
+                    Point1="1159.15192994398,12.6613101238295"
+                    Point2="1163.15192994398,12.6613101238295"
+                    Point3="1163.15192994398,16.6613101238295" />
                   <mssgle:LineSegment
-                    End="1158.35192994397,60.6654124706371" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="181.333333333334,42.6666666666667"
-          Id="Package\log_geolocation_load"
-          TopLeft="373.124983320013,682.929821308493" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 30]"
-          TopLeft="462.303555932695,617.413528308252">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,65.516293000241"
-              Start="0,0"
-              End="0,58.016293000241">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.016293000241" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="182.666666666667,42.6666666666667"
-          Id="Package\log_order_items_load"
-          TopLeft="676.666654596727,669.631576250382" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 31]"
-          TopLeft="771.413670339001,615.087714006586">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54.5438622437965"
-              Start="0,0"
-              End="0,47.0438622437965">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47.0438622437965" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="202.666666666667,42.6666666666667"
-          Id="Package\log_order_payments_load"
-          TopLeft="991.624992595986,672.368418325595" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 32]"
-          TopLeft="1091.437489192,615.333328289944">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,57.0350900356517"
-              Start="0,0"
-              End="0,49.5350900356517">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,49.5350900356517" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="193.333333333334,42.6666666666667"
-          Id="Package\log_order_reviews_load"
-          TopLeft="1305.74998955056,669.631576250382" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 33]"
-          TopLeft="1402.12498503365,610.087714312452">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.5438619379306"
-              Start="0,0"
-              End="0,52.0438619379306">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.0438619379306" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\log_orders_load"
-          TopLeft="1628.20832006199,665.526313137563" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 34]"
-          TopLeft="1703.06248156447,611.298240014721">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54.2280731228419"
-              Start="0,0"
-              End="0,46.7280731228419">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.7280731228419" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="166.666666666667,42.6666666666667"
-          Id="Package\log_products_load"
-          TopLeft="1887.04165350708,659.92982202218" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 35]"
-          TopLeft="1969.12498339452,606.894732367162">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53.0350896550182"
-              Start="0,0"
-              End="0,45.5350896550182">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.5350896550182" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\log_sellers_load"
-          TopLeft="2155.24999860302,667.578944693972" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 36]"
-          TopLeft="2236.24998429791,608.701749613025">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,58.8771950809469"
-              Start="0,0"
-              End="0,51.3771950809469">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.3771950809469" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="296,42.6666666666667"
-          Id="Package\log_product_category_name_translation_load"
-          TopLeft="2423.45832134721,664.842102618759" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 37]"
-          TopLeft="2570.19442892861,608.403504317019">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,56.4385983017406"
-              Start="0,0"
-              End="0,48.9385983017406">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.9385983017406" />
+                    End="1163.15192994398,60.332079137303" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7141,74 +7141,10 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\02_07_7_load_bronze_products csv file">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="200.666666666667,42.6666666666667"
-          Id="Package\02_07_7_load_bronze_products csv file\Flat File Source_products"
-          TopLeft="107.99999678135,23.9999992847443" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\02_07_7_load_bronze_products csv file\Derived Column"
-          TopLeft="131.999996066094,116.999996513128" />
-        <EdgeLayout
-          Id="Package\02_07_7_load_bronze_products csv file.Paths[Flat File Source Output]"
-          TopLeft="209.166663090388,66.666665951411">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,50.3333305617174"
-              Start="0,0"
-              End="0,42.8333305617174">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.8333305617174" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_07_7_load_bronze_products csv file\OLE DB Destination"
-          TopLeft="116.999996513128,211.999993681908" />
-        <EdgeLayout
-          Id="Package\02_07_7_load_bronze_products csv file.Paths[Derived Column Output]"
-          TopLeft="207.166662956278,159.666663179795">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,52.3333305021127"
-              Start="0,0"
-              End="0,44.8333305021127">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,44.8333305021127" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
     design-time-name="Package\02_01_1_load_ bronze_customers csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="225.333333333334,42.6666666666667"
           Id="Package\02_01_1_load_ bronze_customers csv file\OLE DB Destination_olist_dwh"
@@ -7240,7 +7176,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7262,7 +7200,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7285,7 +7225,11 @@
     design-time-name="Package\02_02_2_load_bronze_geolocation csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_02_2_load_bronze_geolocation csv file\OLE DB Destination"
+          TopLeft="94.3749957811089,207.315787197398" />
         <NodeLayout
           Size="233.333333333334,42.6666666666667"
           Id="Package\02_02_2_load_bronze_geolocation csv file\Flat File Source_geolocation csv"
@@ -7313,13 +7257,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_02_2_load_bronze_geolocation csv file\OLE DB Destination"
-          TopLeft="94.3749957811089,207.315787197398" />
         <EdgeLayout
           Id="Package\02_02_2_load_bronze_geolocation csv file.Paths[Derived Column Output]"
           TopLeft="185.16666208456,165.140349532456">
@@ -7339,17 +7281,36 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_02_2_load_bronze_geolocation csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\02_03_3_load_bronze_order_items csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_03_3_load_bronze_order_items csv file\OLE DB Destination"
+          TopLeft="126.999996215105,234.999992996454" />
         <NodeLayout
           Size="221.333333333334,42.6666666666667"
           Id="Package\02_03_3_load_bronze_order_items csv file\Flat File Source_orders_items"
@@ -7377,13 +7338,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_03_3_load_bronze_order_items csv file\OLE DB Destination"
-          TopLeft="126.999996215105,234.999992996454" />
         <EdgeLayout
           Id="Package\02_03_3_load_bronze_order_items csv file.Paths[Derived Column Output]"
           TopLeft="215.666662702958,154.666663328807">
@@ -7403,17 +7362,36 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_03_3_load_bronze_order_items csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\02_04_4_load_bronze_order_payments csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_04_4_load_bronze_order_payments csv file\OLE DB Destination"
+          TopLeft="144.999995678663,214.999993592501" />
         <NodeLayout
           Size="237.333333333334,42.6666666666667"
           Id="Package\02_04_4_load_bronze_order_payments csv file\Flat File Source_order_payments"
@@ -7441,13 +7419,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_04_4_load_bronze_order_payments csv file\OLE DB Destination"
-          TopLeft="144.999995678663,214.999993592501" />
         <EdgeLayout
           Id="Package\02_04_4_load_bronze_order_payments csv file.Paths[Derived Column Output]"
           TopLeft="231.666662226121,164.666663030783">
@@ -7467,17 +7443,36 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_04_4_load_bronze_order_payments csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\02_05_5_load_bronze_order_reviews csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_05_5_load_bronze_order_reviews csv file\OLE DB Destination"
+          TopLeft="161.999995172024,225.999993264675" />
         <NodeLayout
           Size="226.666666666667,42.6666666666667"
           Id="Package\02_05_5_load_bronze_order_reviews csv file\Flat File Source_order_reviews"
@@ -7505,13 +7500,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_05_5_load_bronze_order_reviews csv file\OLE DB Destination"
-          TopLeft="161.999995172024,225.999993264675" />
         <EdgeLayout
           Id="Package\02_05_5_load_bronze_order_reviews csv file.Paths[Derived Column Output]"
           TopLeft="247.166661764185,179.666662583749">
@@ -7531,17 +7524,36 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_05_5_load_bronze_order_reviews csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\02_06_6_load_bronze_orders csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_06_6_load_bronze_orders csv file\OLE DB Destination"
+          TopLeft="85.9999974370003,224.999993294478" />
         <NodeLayout
           Size="190.666666666667,42.6666666666667"
           Id="Package\02_06_6_load_bronze_orders csv file\Flat File Source_orders"
@@ -7550,32 +7562,6 @@
           Size="156,42.6666666666667"
           Id="Package\02_06_6_load_bronze_orders csv file\Derived Column"
           TopLeft="93.9999971985818,123.999996304512" />
-        <EdgeLayout
-          Id="Package\02_06_6_load_bronze_orders csv file.Paths[Flat File Source Output]"
-          TopLeft="175.166664029161,72.666665772597">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,51.3333305319152"
-              Start="0,0"
-              End="0,43.8333305319152">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.8333305319152" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_06_6_load_bronze_orders csv file\OLE DB Destination"
-          TopLeft="85.9999974370003,224.999993294478" />
         <EdgeLayout
           Id="Package\02_06_6_load_bronze_orders csv file.Paths[Derived Column Output]"
           TopLeft="172.666663984458,166.666662971179">
@@ -7595,17 +7581,137 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\02_06_6_load_bronze_orders csv file.Paths[Flat File Source Output]"
+          TopLeft="175.166664029161,72.666665772597">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.3333305319152"
+              Start="0,0"
+              End="0,43.8333305319152">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.8333305319152" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_06_6_load_bronze_orders csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\02_07_7_load_bronze_products csv file">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_07_7_load_bronze_products csv file\OLE DB Destination"
+          TopLeft="116.999996513128,211.999993681908" />
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\02_07_7_load_bronze_products csv file\Flat File Source_products"
+          TopLeft="107.99999678135,23.9999992847443" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\02_07_7_load_bronze_products csv file\Derived Column"
+          TopLeft="131.999996066094,116.999996513128" />
+        <EdgeLayout
+          Id="Package\02_07_7_load_bronze_products csv file.Paths[Flat File Source Output]"
+          TopLeft="209.166663090388,66.666665951411">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.3333305617174"
+              Start="0,0"
+              End="0,42.8333305617174">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.8333305617174" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\02_07_7_load_bronze_products csv file.Paths[Derived Column Output]"
+          TopLeft="207.166662956278,159.666663179795">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.3333305021127"
+              Start="0,0"
+              End="0,44.8333305021127">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.8333305021127" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_07_7_load_bronze_products csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\02_08_8_load_bronze_sellers csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="190.666666666667,42.6666666666667"
           Id="Package\02_08_8_load_bronze_sellers csv file\Flat File Source_sellers"
@@ -7614,6 +7720,10 @@
           Size="156,42.6666666666667"
           Id="Package\02_08_8_load_bronze_sellers csv file\Derived Column"
           TopLeft="71.9999978542329,113.999996602535" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_08_8_load_bronze_sellers csv file\OLE DB Destination"
+          TopLeft="55.99999833107,219.999993443489" />
         <EdgeLayout
           Id="Package\02_08_8_load_bronze_sellers csv file.Paths[Flat File Source Output]"
           TopLeft="163.458330287909,60.4561401555523">
@@ -7645,13 +7755,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_08_8_load_bronze_sellers csv file\OLE DB Destination"
-          TopLeft="55.99999833107,219.999993443489" />
         <EdgeLayout
           Id="Package\02_08_8_load_bronze_sellers csv file.Paths[Derived Column Output]"
           TopLeft="146.666664759318,156.666663269202">
@@ -7671,17 +7779,36 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02_08_8_load_bronze_sellers csv file\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\02_09_9_load_product_category_name_translation csv file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\02_09_9_load_product_category_name_translation csv file\OLE DB Destination"
+          TopLeft="170.999994903803,191.999994277954" />
         <NodeLayout
           Size="330,42.6666666666667"
           Id="Package\02_09_9_load_product_category_name_translation csv file\Flat File Source_product_category_name_translation"
@@ -7709,13 +7836,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\02_09_9_load_product_category_name_translation csv file\OLE DB Destination"
-          TopLeft="170.999994903803,191.999994277954" />
         <EdgeLayout
           Id="Package\02_09_9_load_product_category_name_translation csv file.Paths[Derived Column Output]"
           TopLeft="260.166661376755,141.666663716237">
@@ -7735,103 +7860,14 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_02_2_load_bronze_geolocation csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_03_3_load_bronze_order_items csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_04_4_load_bronze_order_payments csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_05_5_load_bronze_order_reviews csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_06_6_load_bronze_orders csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_07_7_load_bronze_products csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\02_08_8_load_bronze_sellers csv file\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\02_09_9_load_product_category_name_translation csv file\OLE DB Destination">
     <Properties>
