@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="olist_ssis_pipeline"
   DTS:PackageType="5"
-  DTS:VersionBuild="242"
-  DTS:VersionGUID="{C83E4FF9-FED1-4938-A5CA-CE3514C64C26}">
+  DTS:VersionBuild="243"
+  DTS:VersionGUID="{F7AF9D57-67AD-4EF9-98AD-52B8C1D1ED52}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1803,7 +1803,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_03_createtb_bronze_order_items"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2361,7 +2361,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_04_createtb_bronze_order_payments"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2993,7 +2993,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_05_createtb_bronze_order_reviews"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3665,7 +3665,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_06_createtb_bronze_orders"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -4375,7 +4375,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_07_createtb_bronze_products"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -4895,7 +4895,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_08_createtb_bronze_sellers"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5339,7 +5339,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02_09_createtb_bronze_product_category_name_translation"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5373,7 +5373,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="02__02_createtb_bronze_geolocation"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5854,127 +5854,127 @@
       <GraphLayout
         Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="189,43"
+          Size="188.8,43.2"
           Id="Package\00_createdb_olist_dwh"
           TopLeft="1072.23209492463,12.2832078851829" />
         <NodeLayout
-          Size="212,42"
+          Size="212,41.6"
           Id="Package\01_create_bronze_schema"
           TopLeft="1061.21423729084,95.5087709031172" />
         <NodeLayout
-          Size="259,43"
+          Size="259.2,43.2"
           Id="Package\02__02_createtb_bronze_geolocation"
           TopLeft="298.898796161991,291.674182517329" />
         <NodeLayout
-          Size="239,43"
+          Size="239.2,43.2"
           Id="Package\02_01_0_truncate_bronze_tables"
           TopLeft="1036.87495364808,432.912276028982" />
         <NodeLayout
-          Size="279,43"
+          Size="279.2,43.2"
           Id="Package\02_01_1_load_ bronze_customers csv file"
           TopLeft="2.04768670953223,575.418540443206" />
         <NodeLayout
-          Size="247,42"
+          Size="247.2,41.6"
           Id="Package\02_01_createtb_bronze_customers"
           TopLeft="18.0059515760235,294.616538125872" />
         <NodeLayout
-          Size="281,43"
+          Size="280.8,43.2"
           Id="Package\02_02_2_load_bronze_geolocation csv file"
           TopLeft="320.148795212043,574.746861641585" />
         <NodeLayout
-          Size="284,43"
+          Size="284,43.2"
           Id="Package\02_03_3_load_bronze_order_items csv file"
           TopLeft="632.827352747943,572.421047339919" />
         <NodeLayout
-          Size="255,43"
+          Size="255.2,43.2"
           Id="Package\02_03_createtb_bronze_order_items"
           TopLeft="596.220211442118,290.328317738695" />
         <NodeLayout
-          Size="304,43"
+          Size="304,43.2"
           Id="Package\02_04_4_load_bronze_order_payments csv file"
           TopLeft="937.916652454684,572.666661623277" />
         <NodeLayout
-          Size="275,43"
+          Size="275.2,43.2"
           Id="Package\02_04_createtb_bronze_order_payments"
           TopLeft="876.57734176632,289.065160384859" />
         <NodeLayout
-          Size="295,43"
+          Size="295.2,43.2"
           Id="Package\02_05_5_load_bronze_order_reviews csv file"
           TopLeft="1254.49998051674,567.421047645785" />
         <NodeLayout
-          Size="265,43"
+          Size="264.8,43.2"
           Id="Package\02_05_createtb_bronze_order_reviews"
           TopLeft="1176.3987569347,295.375938050559" />
         <NodeLayout
-          Size="257,43"
+          Size="256.8,43.2"
           Id="Package\02_06_6_load_bronze_orders csv file"
           TopLeft="1571.24997640029,568.631573348054" />
         <NodeLayout
-          Size="228,43"
+          Size="228,43.2"
           Id="Package\02_06_createtb_bronze_orders"
           TopLeft="1457.88685023298,298.180449881461" />
         <NodeLayout
-          Size="268,43"
+          Size="268,43.2"
           Id="Package\02_07_7_load_bronze_products csv file"
           TopLeft="1833.87497994863,564.228065700495" />
         <NodeLayout
-          Size="239,43"
+          Size="239.2,43.2"
           Id="Package\02_07_createtb_bronze_products"
           TopLeft="1707.32137698414,295.882203049328" />
         <NodeLayout
-          Size="259,43"
+          Size="259.2,43.2"
           Id="Package\02_08_8_load_bronze_sellers csv file"
           TopLeft="2109.2499699928,566.035082946359" />
         <NodeLayout
-          Size="229,43"
+          Size="228.8,43.2"
           Id="Package\02_08_createtb_bronze_sellers"
           TopLeft="1975.35706760096,300.937340482898" />
         <NodeLayout
-          Size="359,43"
+          Size="359.2,43.2"
           Id="Package\02_09_9_load_product_category_name_translation csv file"
           TopLeft="2389.59720317668,565.736837650352" />
         <NodeLayout
-          Size="377,42"
+          Size="376.8,41.6"
           Id="Package\02_09_createtb_bronze_product_category_name_translation"
           TopLeft="2221.0019260883,296.937340251799" />
         <NodeLayout
-          Size="217,43"
+          Size="216.8,43.2"
           Id="Package\02_10_createtb_etl_load_log"
           TopLeft="1054.24999614432,186.105261114496" />
         <NodeLayout
-          Size="175,43"
+          Size="175.2,43.2"
           Id="Package\log_customers_load"
           TopLeft="46.2499979324639,682.842097765687" />
         <NodeLayout
-          Size="181,43"
+          Size="180.8,43.2"
           Id="Package\log_geolocation_load"
           TopLeft="373.124983320013,682.929821308493" />
         <NodeLayout
-          Size="183,43"
+          Size="183.2,43.2"
           Id="Package\log_order_items_load"
           TopLeft="676.666654596727,669.631576250382" />
         <NodeLayout
-          Size="203,43"
+          Size="203.2,43.2"
           Id="Package\log_order_payments_load"
           TopLeft="991.624992595986,672.368418325595" />
         <NodeLayout
-          Size="193,43"
+          Size="192.8,43.2"
           Id="Package\log_order_reviews_load"
           TopLeft="1305.74998955056,669.631576250382" />
         <NodeLayout
-          Size="156,43"
+          Size="156,43.2"
           Id="Package\log_orders_load"
           TopLeft="1628.20832006199,665.526313137563" />
         <NodeLayout
-          Size="296,43"
+          Size="296,43.2"
           Id="Package\log_product_category_name_translation_load"
           TopLeft="2423.45832134721,664.842102618759" />
         <NodeLayout
-          Size="167,43"
+          Size="167.2,43.2"
           Id="Package\log_products_load"
           TopLeft="1887.04165350708,659.92982202218" />
         <NodeLayout
-          Size="157,43"
+          Size="156.8,43.2"
           Id="Package\log_sellers_load"
           TopLeft="2155.24999860302,667.578944693972" />
         <EdgeLayout
