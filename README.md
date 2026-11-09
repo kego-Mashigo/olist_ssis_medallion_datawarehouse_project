@@ -1,3 +1,6 @@
+![Olist E-Commerce banner with a storefront, bar chart, and line graph](docs/olist-ecommerce-banner.png)
+
+
 ## Project Overview
 
 This BrightLearn data engineering project uses the **Brazilian E-Commerce Public Dataset by Olist**, which contains approximately 100,000 orders placed between 2016 and 2018. Olist connects small merchants with customers through the Olist Store. Sellers fulfil orders through logistics partners, and customers receive a satisfaction survey after delivery or once the estimated delivery date has passed.
