@@ -1,5 +1,6 @@
-![Olist E-Commerce banner with a storefront, bar chart, and line graph](docs/olist-ecommerce-banner.png)
+## Olist E-commerce Data Warehouse - SSIS Medallion Project
 
+![Olist E-Commerce banner with a storefront, bar chart, and line graph](docs/olist-ecommerce-banner.png)
 
 ## Project Overview
 
